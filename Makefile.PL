@@ -33,7 +33,8 @@ my %WriteMakefileArgs = (
     "File::Spec" => 0,
     "IO::Select" => 0,
     "Socket" => 0,
-    "Test::More" => 0
+    "Test::More" => 0,
+    "Test::RequiresInternet" => 0,
   },
   "VERSION" => "6.14",
   "test" => {

@@ -3,20 +3,9 @@ BEGIN {
         print "1..0 # SKIP Live tests disabled due to NO_NETWORK_TESTING\n";
         exit;
     }
-    eval {
-        require IO::Socket::INET;
-        my $s = IO::Socket::INET->new(
-            PeerHost => "www.cpan.org:80",
-            Timeout  => 5,
-        );
-        die "Can't connect: $@" unless $s;
-    };
-    if ($@) {
-        print "1..0 # SKIP Can't connect to www.cpan.org\n";
-        print $@;
-        exit;
-    }
 }
+
+use Test::RequiresInternet ( 'cpan.org' => 80 );
 
 use strict;
 use warnings;
@@ -62,4 +51,3 @@ for ( 1 .. 2 ) {
     like( $h{'Content-Type'}, qr{text/html} );
     like( $buf, qr{</html>}i );
 }
-
